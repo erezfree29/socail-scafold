@@ -10,31 +10,29 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :friendships
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  # all the users friends 
   def friends
-    friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
-    friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
-    friends_array.compact
+    friends_i_sent_invitation_to = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
+    friends_i_got_invitation_from = Friendship.where(friend_id: id, confirmed: true).pluck(:user_id)
+    ids = friends_i_sent_invitation_to + friends_i_got_invitation_from
+    User.where(id: ids)
   end
 
-  # Users who have yet to confirme friend requests
+  # users that have yet to confirm friend requests 
   def pending_friends
-    friendships.map{|friendship| friendship.friend if !friendship.confirmed}.compact
+    ids = Friendship.where(user_id: id, confirmed: false).pluck(:friend_id)
+    User.where(id: ids)
   end
-
   # Users who have requested to be friends
-  def friend_requests
-    inverse_friendships.map{|friendship| friendship.user if !friendship.confirmed}.compact
+  def friend_requests 
+    ids = Friendship.where(friend_id: id, confirmed: false).pluck(:user_id)
+    User.where(id: ids)
   end
 
-  def confirm_friend(user)
-    friendship = inverse_friendships.find{|friendship| friendship.user == user}
-    friendship.confirmed = true
-    friendship.save
-  end
-
-  def friend?(user)
-    friends.include?(user)
+   # check if user is a friend 
+   def friends_with(user)
+    Friendship.select(:friend_id).where(user_id:id).pluck(:friend_id).include?(user.id)
   end
 end
