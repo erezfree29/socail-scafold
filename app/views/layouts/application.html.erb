@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <nav class="nav">
@@ -35,6 +36,9 @@
       </div>
     <% end %>
     <main class="main">
+      <%- flash.each do |name, message| %>
+      <p><i><%= "#{name}: #{message}" %></i></p>
+      <% end %>
       <%= yield %>
     </main>
   </body>
