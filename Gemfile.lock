@@ -144,6 +144,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    record_tag_helper (1.0.1)
+      actionview (>= 5)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -232,6 +234,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.12)
   rails (~> 5.2.4)
+  record_tag_helper (~> 1.0)
   rspec
   rubocop
   sass-rails (~> 5.0)

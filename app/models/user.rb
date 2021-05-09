@@ -32,7 +32,7 @@ class User < ApplicationRecord
     ids.include?(user.id)
   end  
 
-  # Users who have requested to be friends
+  # Users who the user requested to be friends with
   def friend_requests 
     ids = Friendship.where(friend_id: id, confirmed: false).pluck(:user_id)
     User.where(id: ids)
