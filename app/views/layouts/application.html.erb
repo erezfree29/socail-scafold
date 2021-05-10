@@ -22,6 +22,8 @@
       <% if current_user %>
         <% if controller_name == 'users' && action_name == 'show' %>
           <%= link_to 'my profile' ,user_path(current_user) ,class: 'highlight'%>
+          <% else %>
+           <%= link_to 'my profile' ,user_path(current_user)%>
         <% end %>  
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
       <% else %>

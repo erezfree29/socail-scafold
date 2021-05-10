@@ -17,3 +17,12 @@
  .highlight {
    text-decoration: underline;
  }
+
+ .friend_requests_table {
+   display: flex;
+ }
+
+ .friend_requests,
+ .approve_requests {
+   padding-right: 30px;
+ }
