@@ -2,5 +2,8 @@
   Name: <%= user.name %>
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+    <%= link_to "send friend request", "/users/#{user.id}/request", method: :post, 
+    data: {confrim:"Send a friend request?"} unless current_user.friends_with(user)%>
+
   </span>
 </li>
