@@ -26,7 +26,8 @@ class UsersController < ApplicationController
   end
 
   def approve
-    Friendship.where(user_id: params[:friend_id], friend_id: params[:user_id]).update(confirmed: true)
+    @friendship = Friendship.where(user_id: params[:friend_id], friend_id: params[:user_id])
+    Friendship.find(@friendship.ids[0]).confirm_friend
     redirect_to user_path(current_user), flash: { success: 'you have confirmed the friend request' }
   end
 
