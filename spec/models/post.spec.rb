@@ -7,7 +7,7 @@ RSpec.describe Post, type: :model do
       expect(post.user_id).to eq(1)
     end
     it 'should return the contnet' do
-      expect(post.content).to eq("my new post")
+      expect(post.content).to eq('my new post')
     end
     it 'should not return content' do
       expect(post.content).not_to eq('a_different_content')

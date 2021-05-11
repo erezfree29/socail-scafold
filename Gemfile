@@ -53,7 +53,6 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'rspec-rails'
 end
 
 group :development do

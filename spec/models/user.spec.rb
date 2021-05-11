@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-  let(:user) { User.create(name:'Elvis', email: 'elvis@gmail.com', password: '246888') }
+  let(:user) { User.create(name: 'Elvis', email: 'elvis@gmail.com', password: '246888') }
   context 'should create new user' do
     it 'should return user name' do
       expect(user.name).to eq('Elvis')
