@@ -9,7 +9,10 @@
   <h3>
     Recent posts
   </h3>
+   <ul class="posts">
+    <%= render @user_posts %>
+  </ul>
   <ul class="posts">
-    <%= render @timeline_posts %>
+    <%= render @friends_posts %>
   </ul>
 </article>
