@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <nav class="nav">
@@ -19,6 +20,11 @@
         </div>
       </div>
       <% if current_user %>
+        <% if controller_name == 'users' && action_name == 'show' %>
+          <%= link_to 'my profile' ,user_path(current_user) ,class: 'highlight'%>
+          <% else %>
+           <%= link_to 'my profile' ,user_path(current_user)%>
+        <% end %>  
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Sign in', user_session_path %>
@@ -35,6 +41,9 @@
       </div>
     <% end %>
     <main class="main">
+      <%- flash.each do |name, message| %>
+      <p><i><%= "#{name}: #{message}" %></i></p>
+      <% end %>
       <%= yield %>
     </main>
   </body>

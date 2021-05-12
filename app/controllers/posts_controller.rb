@@ -20,7 +20,9 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    @timeline_posts ||= Post.all.ordered_by_most_recent.includes(:user)
+    friends_ids = current_user.friends.pluck(:id)
+    @friends_posts = Post.all.ordered_by_most_recent.where(user_id: friends_ids)
+    @user_posts = Post.all.ordered_by_most_recent.where(user_id: current_user.id)
   end
 
   def post_params
