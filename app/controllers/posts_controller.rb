@@ -7,8 +7,8 @@ class PostsController < ApplicationController
     @posts = Post.all
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml =>  @posts }
-      format.json { render :json =>  @posts }
+      format.xml { render :xml => @posts }
+      format.json { render :json => @posts }
     end
   end
 
@@ -24,13 +24,13 @@ class PostsController < ApplicationController
   end
 
   def post_comments(id)
-    @post_comment = Comment.where(post_id:id)
+    @post_comment = Comment.where(post_id: id)
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml =>   @post_comment }
-      format.json { render :json =>   @post_comment }
+      format.xml { render :xml => @post_comment }
+      format.json { render :json => @post_comment }
     end
-  end  
+  end
 
   private
 

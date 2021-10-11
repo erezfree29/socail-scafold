@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
     @comment.post_id = params[:post_id]
     @comment.user = current_user
 
-
     if @comment.save
       redirect_to posts_path, notice: 'Comment was successfully created.'
     else
