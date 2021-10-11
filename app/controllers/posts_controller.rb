@@ -4,6 +4,12 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     timeline_posts
+    @posts = Post.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml =>  @posts }
+      format.json { render :json =>  @posts }
+    end
   end
 
   def create
@@ -16,6 +22,15 @@ class PostsController < ApplicationController
       render :index, alert: 'Post was not created.'
     end
   end
+
+  def post_comments(id)
+    @post_comment = Comment.where(post_id:id)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml =>   @post_comment }
+      format.json { render :json =>   @post_comment }
+    end
+  end  
 
   private
 
